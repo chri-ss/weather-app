@@ -1,13 +1,12 @@
 import getWeather from "./callWeatherAPI";
 
-const content = document.getElementById("content");
-
 const reportWeather = () => {
   const form = document.querySelector("form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const search = form.querySelector("input");
-    getWeather(search.value);
+    const newWeather = getWeather(search.value);
+    newWeather.then((data) => console.log(Object.entries(data)));
   });
 };
 
