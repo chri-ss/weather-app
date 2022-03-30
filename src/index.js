@@ -1,4 +1,6 @@
 import "./style.scss";
-import getWeather from "./callWeatherAPI";
+import { makeSearch } from "./DOM";
+import  reportWeather from './processData'
 
-getWeather('Vancouver');
+makeSearch();
+reportWeather();
