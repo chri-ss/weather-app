@@ -1,6 +1,6 @@
 import "./style.scss";
-import { makeSearch } from "./DOM";
+import makeDOM from "./DOM";
 import  reportWeather from './processData'
 
-makeSearch();
+makeDOM();
 reportWeather();
