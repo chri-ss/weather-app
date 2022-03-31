@@ -1,8 +1,8 @@
 import getWeather from "./callWeatherAPI";
 
 const filterWeather = (weatherData) => {
-  weatherData = Object.entries(weatherData);
-  weatherData = weatherData.filter(
+  let newWeather = Object.entries(weatherData);
+  newWeather = newWeather.filter(
     ([k, v]) =>
       k === "weather" ||
       k === "main" ||
@@ -10,11 +10,9 @@ const filterWeather = (weatherData) => {
       k === "clouds" ||
       k === "name"
   );
-  weatherData = Object.fromEntries(weatherData);
-  // console.log(weatherData);
-  // return weatherData;
-  const body = document.querySelector("body");
-  body.textContent = weatherData.name;
+  newWeather = Object.fromEntries(newWeather);
+  // console.log(newWeather);
+  return newWeather;
 };
 
 const reportWeather = () => {
@@ -23,7 +21,9 @@ const reportWeather = () => {
     e.preventDefault();
     const search = form.querySelector("input");
     const newWeather = getWeather(search.value);
-    newWeather.then((data) => filterWeather(data));
+    newWeather
+      .then((data) => filterWeather(data))
+      .then((result) => console.log(result));
   });
 };
 
