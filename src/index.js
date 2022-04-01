@@ -1,5 +1,5 @@
 import "./style.scss";
-import makeDOM from "./DOM";
+import { makeDOM } from "./DOM";
 import  reportWeather from './processData'
 
 makeDOM();
