@@ -1,3 +1,10 @@
+import tempIcon from "./images/snowflake-thermometer.svg";
+import highLowIcon from "./images/swap-vertical-bold.svg";
+import weatherIcon from "./images/white-balance-sunny.svg";
+import cloudIcon from "./images/cloud-percent.svg";
+import humidityIcon from "./images/water-opacity.svg";
+import visibilityIcon from "./images/eye-arrow-right-outline.svg";
+
 const content = document.getElementById("content");
 const header = document.createElement("div");
 const main = document.createElement("div");
@@ -39,12 +46,18 @@ const makeMain = () => {
 };
 
 const makeTemp = () => {
+  const tempImg = document.createElement("img");
+  tempImg.src = tempIcon;
   temp.classList.add("temp");
+  main.appendChild(tempImg);
   main.appendChild(temp);
 };
 
 const makeHighLow = () => {
+  const highLowImg = document.createElement("img");
+  highLowImg.src = highLowIcon;
   highLow.classList.add("high-low");
+  main.appendChild(highLowImg);
   main.appendChild(highLow);
 };
 
@@ -57,7 +70,7 @@ const makeWeather = () => {
   const wrapper = document.createElement("div");
   const weatherImg = document.createElement("img");
   weather.classList.add("weather");
-  weatherImg.src = "#";
+  weatherImg.src = weatherIcon;
   wrapper.appendChild(weatherImg);
   wrapper.appendChild(weather);
   weatherContainer.appendChild(wrapper);
@@ -67,7 +80,7 @@ const makeHumidity = () => {
   const wrapper = document.createElement("div");
   const humidityImg = document.createElement("img");
   humidity.classList.add("humidity");
-  humidityImg.src = "#";
+  humidityImg.src = humidityIcon;
   wrapper.appendChild(humidityImg);
   wrapper.appendChild(humidity);
   weatherContainer.appendChild(wrapper);
@@ -77,7 +90,7 @@ const makeVisibility = () => {
   const wrapper = document.createElement("div");
   const visibilityImg = document.createElement("img");
   visibility.classList.add("visibility");
-  visibilityImg.src = "#";
+  visibilityImg.src = visibilityIcon;
   wrapper.appendChild(visibilityImg);
   wrapper.appendChild(visibility);
   weatherContainer.appendChild(wrapper);
@@ -87,7 +100,7 @@ const makeClouds = () => {
   const wrapper = document.createElement("div");
   const cloudsImg = document.createElement("img");
   clouds.classList.add("clouds");
-  cloudsImg.src = "#";
+  cloudsImg.src = cloudIcon;
   wrapper.appendChild(cloudsImg);
   wrapper.appendChild(clouds);
   weatherContainer.appendChild(wrapper);
