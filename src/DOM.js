@@ -148,4 +148,4 @@ const fillDOM = (weatherData) => {
   clouds.textContent = weatherData.clouds.all;
 };
 
-export { makeDOM, fillDOM };
+export { makeDOM, fillDOM, makeMap };
