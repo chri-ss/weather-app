@@ -1,4 +1,5 @@
 import getWeather from "./callWeatherAPI";
+import { fillDOM } from "./DOM";
 
 const filterWeather = (weatherData) => {
   let newWeather = Object.entries(weatherData);
@@ -11,7 +12,6 @@ const filterWeather = (weatherData) => {
       k === "name"
   );
   newWeather = Object.fromEntries(newWeather);
-  // console.log(newWeather);
   return newWeather;
 };
 
@@ -23,8 +23,8 @@ const reportWeather = () => {
     const newWeather = getWeather(search.value);
     newWeather
       .then((data) => filterWeather(data))
-      .then((result) => console.log(result));
+      .then((result) => fillDOM(result));
   });
 };
 
-export default reportWeather;
+export { reportWeather };

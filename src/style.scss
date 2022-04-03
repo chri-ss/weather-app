@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Roboto-bold";
+  src: url("./fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-italic";
+  src: url("./fonts/Roboto/Roboto-Italic.ttf") format("truetype");
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background: url("./images/pexels-ithalu-dominguez-907485.jpg") no-repeat
+    center center fixed;
+  background-size: cover;
+}
+
+#map {
+  height: 512px;
+  width: 512px;
+}
+
+#content {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr 8fr;
+}
+
+.main,
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.main {
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  font-family: "Roboto-italic", sans-serif;
+}
+
+.header {
+  background-color: #f6879f;
+  font-family: "Roboto-bold", sans-serif;
+}
+
+form {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-column: 1/2;
+
+  input {
+    width: 50%;
+  }
+}
+
+.city {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+h1 {
+  grid-column: 2/3;
+}
+
+.weather-container {
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  gap: 2rem;
+  background-color: rgb(250, 248, 242, 0.1);
+  height: auto;
+  width: 60%;
+  padding: 2rem;
+  border: 2px solid #17a292;
+  border-radius: 10px;
+
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    align-items: center;
+    justify-items: start;
+    font-size: 24px;
+    column-gap: 3rem;
+    height: 3rem;
+  }
+
+  img {
+    height: 100%;
+  }
+}
