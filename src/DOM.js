@@ -17,6 +17,7 @@ const humidity = document.createElement("div");
 const visibility = document.createElement("div");
 const clouds = document.createElement("div");
 
+
 const makeHeader = () => {
   header.classList.add("header");
   content.appendChild(header);
@@ -45,25 +46,29 @@ const makeMain = () => {
   content.appendChild(main);
 };
 
-const makeTemp = () => {
-  const tempImg = document.createElement("img");
-  tempImg.src = tempIcon;
-  temp.classList.add("temp");
-  main.appendChild(tempImg);
-  main.appendChild(temp);
-};
-
-const makeHighLow = () => {
-  const highLowImg = document.createElement("img");
-  highLowImg.src = highLowIcon;
-  highLow.classList.add("high-low");
-  main.appendChild(highLowImg);
-  main.appendChild(highLow);
-};
-
 const makeWeatherContainer = () => {
   weatherContainer.classList.add("weather-container");
   main.appendChild(weatherContainer);
+};
+
+const makeTemp = () => {
+  const wrapper = document.createElement("div");
+  const tempImg = document.createElement("img");
+  tempImg.src = tempIcon;
+  temp.classList.add("temp");
+  wrapper.appendChild(tempImg);
+  wrapper.appendChild(temp);
+  weatherContainer.appendChild(wrapper);
+};
+
+const makeHighLow = () => {
+  const wrapper = document.createElement("div");
+  const highLowImg = document.createElement("img");
+  highLowImg.src = highLowIcon;
+  highLow.classList.add("high-low");
+  wrapper.appendChild(highLowImg);
+  wrapper.appendChild(highLow);
+  weatherContainer.appendChild(wrapper);
 };
 
 const makeWeather = () => {

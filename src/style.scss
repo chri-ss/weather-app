@@ -1,4 +1,82 @@
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background: url("./images/pexels-ithalu-dominguez-907485.jpg") no-repeat
+    center center fixed;
+  background-size: cover;
+}
+
 #map {
   height: 512px;
   width: 512px;
+}
+
+#content {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr 8fr;
+}
+
+.main,
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.main {
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.header {
+  background-color: #f6879f;
+}
+
+form {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-column: 1/2;
+
+  input {
+    width: 50%;
+  }
+}
+
+.city {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+h1 {
+  grid-column: 2/3;
+}
+
+.weather-container {
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  gap: 2rem;
+  background-color: #faf8f2;
+  width: 80%;
+
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    align-items: center;
+    justify-items: start;
+    gap: 2rem;
+    font-size: 40px;
+  }
+
+  > img {
+    height: 100%;
+  }
 }
