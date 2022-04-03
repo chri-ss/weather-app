@@ -17,7 +17,6 @@ const humidity = document.createElement("div");
 const visibility = document.createElement("div");
 const clouds = document.createElement("div");
 
-
 const makeHeader = () => {
   header.classList.add("header");
   content.appendChild(header);
@@ -25,6 +24,7 @@ const makeHeader = () => {
 
 const makeCity = () => {
   city.classList.add("city");
+  city.textContent = "-";
   header.appendChild(city);
 };
 
@@ -52,6 +52,7 @@ const makeWeatherContainer = () => {
 };
 
 const makeTemp = () => {
+  temp.textContent = "-";
   const wrapper = document.createElement("div");
   const tempImg = document.createElement("img");
   tempImg.src = tempIcon;
@@ -62,6 +63,7 @@ const makeTemp = () => {
 };
 
 const makeHighLow = () => {
+  highLow.textContent = "-";
   const wrapper = document.createElement("div");
   const highLowImg = document.createElement("img");
   highLowImg.src = highLowIcon;
@@ -72,6 +74,7 @@ const makeHighLow = () => {
 };
 
 const makeWeather = () => {
+  weather.textContent = "-";
   const wrapper = document.createElement("div");
   const weatherImg = document.createElement("img");
   weather.classList.add("weather");
@@ -82,6 +85,7 @@ const makeWeather = () => {
 };
 
 const makeHumidity = () => {
+  humidity.textContent = "-";
   const wrapper = document.createElement("div");
   const humidityImg = document.createElement("img");
   humidity.classList.add("humidity");
@@ -92,6 +96,7 @@ const makeHumidity = () => {
 };
 
 const makeVisibility = () => {
+  visibility.textContent = "-";
   const wrapper = document.createElement("div");
   const visibilityImg = document.createElement("img");
   visibility.classList.add("visibility");
@@ -102,6 +107,7 @@ const makeVisibility = () => {
 };
 
 const makeClouds = () => {
+  clouds.textContent = '-';
   const wrapper = document.createElement("div");
   const cloudsImg = document.createElement("img");
   clouds.classList.add("clouds");
@@ -135,7 +141,7 @@ const makeDOM = () => {
 const fillDOM = (weatherData) => {
   city.textContent = weatherData.name;
   temp.textContent = weatherData.main.temp;
-  highLow.textContent = `HI: ${weatherData.main.temp_max}°F LOW: ${weatherData.main.temp_min}°F`;
+  highLow.textContent = `HI: ${weatherData.main.temp_max}°C LOW: ${weatherData.main.temp_min}°C`;
   weather.textContent = weatherData.weather[0].description;
   humidity.textContent = weatherData.main.humidity;
   visibility.textContent = weatherData.visibility;
