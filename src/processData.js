@@ -27,4 +27,4 @@ const reportWeather = () => {
   });
 };
 
-export default reportWeather;
+export { reportWeather };

@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Roboto-bold";
+  src: url("./fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-italic";
+  src: url("./fonts/Roboto/Roboto-Italic.ttf") format("truetype");
+}
+
 html,
 body {
   height: 100vh;
@@ -30,10 +40,12 @@ body {
   height: 100%;
   align-items: center;
   justify-items: center;
+  font-family: "Roboto-italic", sans-serif;
 }
 
 .header {
   background-color: #f6879f;
+  font-family: "Roboto-bold", sans-serif;
 }
 
 form {
@@ -64,19 +76,24 @@ h1 {
   align-items: center;
   justify-items: start;
   gap: 2rem;
-  background-color: #faf8f2;
-  width: 80%;
+  background-color: rgb(250, 248, 242, 0.1);
+  height: auto;
+  width: 60%;
+  padding: 2rem;
+  border: 2px solid #17a292;
+  border-radius: 10px;
 
   > div {
     display: grid;
-    grid-template-columns: 1fr 8fr;
+    grid-template-columns: 1fr 10fr;
     align-items: center;
     justify-items: start;
-    gap: 2rem;
-    font-size: 40px;
+    font-size: 24px;
+    column-gap: 3rem;
+    height: 3rem;
   }
 
-  > img {
+  img {
     height: 100%;
   }
 }
