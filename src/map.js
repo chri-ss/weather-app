@@ -1,7 +1,7 @@
 import { makeMap } from "./DOM";
 
 function buildMap(coordObject) {
-  var map = L.map("map").setView([coordObject.lat, coordObject.lon], 13);
+  var map = L.map("map").setView([coordObject.lat, coordObject.lon], 10);
 
   L.tileLayer(
     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2hyaS1zcyIsImEiOiJjbDFmeHJhdGEwMzlkM2lyMmE0anh5enp2In0.PqiAc2VKdIeR4BaGQ7yyFw",
