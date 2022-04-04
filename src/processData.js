@@ -1,10 +1,14 @@
 import getWeather from "./callWeatherAPI";
 import { fillDOM } from "./DOM";
+import { updateMap } from "./map";
+
+const getCoords = (weatherObject) => (weatherObject.coord);
 
 const filterWeather = (weatherData) => {
   let newWeather = Object.entries(weatherData);
   newWeather = newWeather.filter(
     ([k, v]) =>
+      k === "coord" ||
       k === "weather" ||
       k === "main" ||
       k === "visibility" ||
@@ -23,7 +27,10 @@ const reportWeather = () => {
     const newWeather = getWeather(search.value);
     newWeather
       .then((data) => filterWeather(data))
-      .then((result) => fillDOM(result));
+      .then((result) => {
+        fillDOM(result);
+        updateMap(getCoords(result));
+      });
   });
 };
 
