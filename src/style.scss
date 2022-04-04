@@ -48,6 +48,7 @@ body {
 .header {
   background-color: #f6879f;
   font-family: "Roboto-bold", sans-serif;
+  border-bottom: 2px solid #17a292;
 }
 
 form {
@@ -58,6 +59,23 @@ form {
 
   input {
     width: 50%;
+    font-size: 24px;
+    border-radius: 3rem;
+    border: none;
+    outline: none;
+  }
+
+  button {
+    border: none;
+    background-color: #17a292;
+    color: white;
+    font-size: 24px;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 3rem;
+
+    :hover {
+      background-color: #052522;
+    }
   }
 }
 
@@ -75,9 +93,10 @@ h1 {
 
 .weather-container {
   display: grid;
+  grid-template-rows: repeat(6, 1fr);
   align-items: center;
   justify-items: start;
-  gap: 2rem;
+  gap: 1rem;
   background-color: rgb(250, 248, 242, 0.1);
   height: auto;
   width: 60%;
@@ -87,12 +106,27 @@ h1 {
 
   > div {
     display: grid;
-    grid-template-columns: 1fr 10fr;
+    grid-template-columns: 1fr 14fr;
+    grid-template-rows: 1fr 2fr;
     align-items: center;
     justify-items: start;
     font-size: 24px;
-    column-gap: 3rem;
-    height: 3rem;
+    column-gap: 2rem;
+    row-gap: 1rem;
+    height: auto;
+
+    :first-child {
+      grid-row: 1/2;
+      grid-column: 1/3;
+      white-space: nowrap;
+      text-decoration:underline;
+      // justify-self: center;
+    }
+
+    :nth-child(2),
+    :last-child {
+      grid-row: 2/3;
+    }
   }
 
   img {
