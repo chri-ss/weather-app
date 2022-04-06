@@ -1,8 +1,9 @@
-import getWeather from "./callWeatherAPI";
+import getLocation from "./getLocation";
+import { getWeather, getFirstWeather } from "./callWeatherAPI";
 import { fillDOM } from "./DOM";
-import { updateMap } from "./map";
+import { buildMap, updateMap } from "./map";
 
-const getCoords = (weatherObject) => (weatherObject.coord);
+const getCoords = (weatherObject) => weatherObject.coord;
 
 const filterWeather = (weatherData) => {
   let newWeather = Object.entries(weatherData);
@@ -34,4 +35,14 @@ const reportWeather = () => {
   });
 };
 
-export { reportWeather };
+async function reportFirstWeather() {
+  const coords = await getLocation();
+  const firstWeather = getFirstWeather(coords);
+  firstWeather
+    .then((data) => filterWeather(data))
+    .then((result) => {
+      fillDOM(result);
+      updateMap(getCoords(result));
+    });
+}
+export { reportWeather, reportFirstWeather };
