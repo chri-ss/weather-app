@@ -46,6 +46,17 @@ const makeMain = () => {
   content.appendChild(main);
 };
 
+const makeToggle = () => {
+  const toggle = document.createElement("input");
+  const toggleLabel = document.createElement("label");
+  toggle.type = "checkbox";
+  toggle.id = "toggle";
+  toggle.name = "toggle";
+  toggleLabel.setAttribute("for", "toggle");
+  weatherContainer.appendChild(toggle);
+  weatherContainer.appendChild(toggleLabel);
+};
+
 const makeWeatherContainer = () => {
   weatherContainer.classList.add("weather-container");
   main.appendChild(weatherContainer);
@@ -146,13 +157,14 @@ const makeDOM = () => {
   makeMain();
   makeSearch();
   makeCity();
+  makeWeatherContainer();
   makeTemp();
   makeHighLow();
-  makeWeatherContainer();
   makeWeather();
   makeHumidity();
   makeVisibility();
   makeClouds();
+  makeToggle();
   makeMap();
 };
 
