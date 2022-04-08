@@ -22,15 +22,16 @@ const filterWeather = (weatherData) => {
 
 const reportWeather = () => {
   const form = document.querySelector("form");
+  const search = form.querySelector("input");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const search = form.querySelector("input");
     const newWeather = getWeather(search.value);
     newWeather
       .then((data) => filterWeather(data))
       .then((result) => {
         fillDOM(result);
         updateMap(getCoords(result));
+        search.value = "";
       });
   });
 };
@@ -57,7 +58,6 @@ const addToggleListener = () => {
       .then((data) => filterWeather(data))
       .then((result) => {
         fillDOM(result);
-        // updateMap(getCoords(result));
       });
   });
 };

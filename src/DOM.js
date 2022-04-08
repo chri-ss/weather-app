@@ -81,7 +81,7 @@ const makeHighLow = () => {
   highLow.textContent = "-";
   const wrapper = document.createElement("div");
   const highLowLabel = document.createElement("div");
-  highLowLabel.textContent = "High & Low";
+  highLowLabel.textContent = "Min & Max Temperature";
   const highLowImg = document.createElement("img");
   highLowImg.src = highLowIcon;
   highLow.classList.add("high-low");
@@ -173,15 +173,15 @@ const fillDOM = (weatherData) => {
   city.textContent = weatherData.name;
   if (celsius) {
     temp.textContent = `${weatherData.main.temp}°C`;
-    highLow.textContent = `HI: ${weatherData.main.temp_max}°C LOW: ${weatherData.main.temp_min}°C`;
+    highLow.textContent = `MIN: ${weatherData.main.temp_min}°C MAX: ${weatherData.main.temp_max}°C`;
   } else {
     temp.textContent = `${weatherData.main.temp}°F`;
-    highLow.textContent = `HI: ${weatherData.main.temp_max}°F LOW: ${weatherData.main.temp_min}°F`;
+    highLow.textContent = `MIN: ${weatherData.main.temp_min}°F MAX: ${weatherData.main.temp_max}°F`;
   }
   weather.textContent = weatherData.weather[0].description;
-  humidity.textContent = weatherData.main.humidity;
+  humidity.textContent = `${weatherData.main.humidity}%`;
   visibility.textContent = weatherData.visibility;
-  clouds.textContent = weatherData.clouds.all;
+  clouds.textContent = `${weatherData.clouds.all}%`;
 };
 
 export { makeDOM, fillDOM, makeMap };

@@ -19,7 +19,7 @@ async function getWeather(city) {
     return response.json();
   }
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=6148db30e4f604e4a99b33552cb35346`,
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=6148db30e4f604e4a99b33552cb35346&units=imperial`,
     { mode: "cors" }
   );
   return response.json();
