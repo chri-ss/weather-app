@@ -4,6 +4,7 @@ import weatherIcon from "./images/white-balance-sunny.svg";
 import cloudIcon from "./images/cloud-percent.svg";
 import humidityIcon from "./images/water-opacity.svg";
 import visibilityIcon from "./images/eye-arrow-right-outline.svg";
+import { celsius } from "./callWeatherAPI";
 
 const content = document.getElementById("content");
 const header = document.createElement("div");
@@ -44,6 +45,17 @@ const makeSearch = () => {
 const makeMain = () => {
   main.classList.add("main");
   content.appendChild(main);
+};
+
+const makeToggle = () => {
+  const toggle = document.createElement("input");
+  const toggleLabel = document.createElement("label");
+  toggle.type = "checkbox";
+  toggle.id = "toggle";
+  toggle.name = "toggle";
+  toggleLabel.setAttribute("for", "toggle");
+  weatherContainer.appendChild(toggle);
+  weatherContainer.appendChild(toggleLabel);
 };
 
 const makeWeatherContainer = () => {
@@ -146,20 +158,26 @@ const makeDOM = () => {
   makeMain();
   makeSearch();
   makeCity();
+  makeWeatherContainer();
   makeTemp();
   makeHighLow();
-  makeWeatherContainer();
   makeWeather();
   makeHumidity();
   makeVisibility();
   makeClouds();
+  makeToggle();
   makeMap();
 };
 
 const fillDOM = (weatherData) => {
   city.textContent = weatherData.name;
-  temp.textContent = `${weatherData.main.temp}°C`;
-  highLow.textContent = `HI: ${weatherData.main.temp_max}°C LOW: ${weatherData.main.temp_min}°C`;
+  if (celsius) {
+    temp.textContent = `${weatherData.main.temp}°C`;
+    highLow.textContent = `HI: ${weatherData.main.temp_max}°C LOW: ${weatherData.main.temp_min}°C`;
+  } else {
+    temp.textContent = `${weatherData.main.temp}°F`;
+    highLow.textContent = `HI: ${weatherData.main.temp_max}°F LOW: ${weatherData.main.temp_min}°F`;
+  }
   weather.textContent = weatherData.weather[0].description;
   humidity.textContent = weatherData.main.humidity;
   visibility.textContent = weatherData.visibility;
