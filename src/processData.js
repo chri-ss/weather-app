@@ -1,5 +1,5 @@
 import getLocation from "./getLocation";
-import { getWeather, getFirstWeather } from "./callWeatherAPI";
+import { getWeather, getFirstWeather, toggleDegrees } from "./callWeatherAPI";
 import { fillDOM } from "./DOM";
 import { buildMap, updateMap } from "./map";
 
@@ -45,4 +45,21 @@ async function reportFirstWeather() {
       updateMap(getCoords(result));
     });
 }
-export { reportWeather, reportFirstWeather };
+
+const addToggleListener = () => {
+  const toggle = document.getElementById("toggle");
+  console.log(toggle);
+  toggle.addEventListener("change", () => {
+    toggleDegrees();
+    const city = document.querySelector(".city");
+    const newWeather = getWeather(city.textContent);
+    newWeather
+      .then((data) => filterWeather(data))
+      .then((result) => {
+        fillDOM(result);
+        // updateMap(getCoords(result));
+      });
+  });
+};
+
+export { reportWeather, reportFirstWeather, addToggleListener };
