@@ -33,4 +33,4 @@ async function getFirstWeather(position) {
   return response.json();
 }
 
-export { getWeather, getFirstWeather, toggleDegrees };
+export { getWeather, getFirstWeather, toggleDegrees, celsius };
