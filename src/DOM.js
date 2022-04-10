@@ -1,15 +1,19 @@
+import { format, fromUnixTime } from "date-fns";
+
 import tempIcon from "./images/snowflake-thermometer.svg";
 import highLowIcon from "./images/swap-vertical-bold.svg";
 import weatherIcon from "./images/white-balance-sunny.svg";
 import cloudIcon from "./images/cloud-percent.svg";
 import humidityIcon from "./images/water-opacity.svg";
 import visibilityIcon from "./images/eye-arrow-right-outline.svg";
+import octoCat from "./images/GitHub-Mark/PNG/GitHub-Mark-64px.png";
 import { celsius } from "./callWeatherAPI";
 
 const content = document.getElementById("content");
 const header = document.createElement("div");
 const main = document.createElement("div");
 const weatherContainer = document.createElement("div");
+const forecast = document.createElement("div");
 const city = document.createElement("h1");
 const temp = document.createElement("div");
 const highLow = document.createElement("div");
@@ -17,6 +21,12 @@ const weather = document.createElement("div");
 const humidity = document.createElement("div");
 const visibility = document.createElement("div");
 const clouds = document.createElement("div");
+
+const convertDate = (date) => {
+  const milliseconds = date * 1000;
+  const dateObject = new Date(milliseconds);
+  return dateObject;
+};
 
 const makeHeader = () => {
   header.classList.add("header");
@@ -36,7 +46,7 @@ const makeSearch = () => {
   search.type = "search";
   searchButton.type = "submit";
   searchButton.textContent = "search";
-  searchButton.setAttribute("placeholder", "Search for your city");
+  searchButton.placeholder = "Enter city";
   searchForm.appendChild(search);
   searchForm.appendChild(searchButton);
   header.appendChild(searchForm);
@@ -153,6 +163,21 @@ const makeMap = () => {
   main.appendChild(map);
 };
 
+const makeGithubLogo = () => {
+  const githubLink = document.createElement("a");
+  const githubLogo = document.createElement("img");
+  githubLink.classList.add("github");
+  githubLink.href = "https://github.com/chri-ss";
+  githubLogo.src = octoCat;
+  githubLink.appendChild(githubLogo);
+  forecast.appendChild(githubLink);
+};
+
+const makeForecast = () => {
+  forecast.classList.add("forecast");
+  content.appendChild(forecast);
+};
+
 const makeDOM = () => {
   makeHeader();
   makeMain();
@@ -167,9 +192,10 @@ const makeDOM = () => {
   makeClouds();
   makeToggle();
   makeMap();
+  makeForecast();
 };
 
-const fillDOM = (weatherData) => {
+const fillWeather = (weatherData) => {
   city.textContent = weatherData.name;
   if (celsius) {
     temp.textContent = `${weatherData.main.temp}°C`;
@@ -184,4 +210,36 @@ const fillDOM = (weatherData) => {
   clouds.textContent = `${weatherData.clouds.all}%`;
 };
 
-export { makeDOM, fillDOM, makeMap };
+const fillForecast = (daily) => {
+  const container = document.createElement("div");
+  const forecastTemp = document.createElement("div");
+  const date = document.createElement("div");
+  if(celsius) {
+    forecastTemp.textContent = `${daily.temp.day}°C`;  
+  } else {
+    forecastTemp.textContent = `${daily.temp.day}°F`;
+  }
+  date.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
+  container.appendChild(forecastTemp);
+  container.appendChild(date);
+  forecast.appendChild(container);
+};
+
+const updateForecast = (daily, i) => {
+  const forecastList = Array.from(document.querySelectorAll(".forecast > div"));
+  console.log(forecastList);
+  if(celsius) {
+    forecastList[i - 1].firstChild.textContent = `${daily.temp.day}°C`;
+  }
+  forecastList[i - 1].firstChild.textContent = `${daily.temp.day}°F`;
+  forecastList[i - 1].lastChild.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
+};
+
+export {
+  makeDOM,
+  fillWeather,
+  makeMap,
+  makeGithubLogo,
+  fillForecast,
+  updateForecast,
+};

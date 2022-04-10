@@ -21,25 +21,26 @@ body {
 
 #map {
   height: 512px;
-  width: 512px;
-  border: 2px solid #17a292;
+  width: 60%;
+  border: 2px solid #07312c;
   border-radius: 10px;
 }
 
 #content {
   display: grid;
   height: 100%;
-  grid-template-rows: 1fr 8fr;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .main,
 .header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
 .main {
   height: 100%;
+  row-gap: 2rem;
   align-items: center;
   justify-items: center;
   font-family: "Roboto-italic", sans-serif;
@@ -48,7 +49,7 @@ body {
 .header {
   background-color: #f6879f;
   font-family: "Roboto-bold", sans-serif;
-  border-bottom: 2px solid #17a292;
+  border-bottom: 2px solid #07312c;
 }
 
 form {
@@ -102,10 +103,10 @@ h1 {
   justify-items: start;
   gap: 1rem;
   background-color: rgb(250, 248, 242, 0.1);
-  height: auto;
+  // height: auto;
   width: 60%;
   padding: 2rem;
-  border: 2px solid #17a292;
+  border: 2px solid #07312c;
   border-radius: 10px;
 
   > div {
@@ -124,7 +125,6 @@ h1 {
       grid-column: 1/3;
       white-space: nowrap;
       text-decoration: underline;
-      // justify-self: center;
     }
 
     :nth-child(2),
@@ -153,6 +153,7 @@ label {
   position: relative;
   cursor: pointer;
   transition: 0.5s;
+  justify-self: center;
 }
 label:after {
   content: "C";
@@ -174,4 +175,34 @@ input:checked + label:after {
   left: calc(100% - 0.2rem);
   transform: translateX(-100%);
   content: "F";
+}
+
+.github {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
+  align-items: center;
+  grid-row: 3/4;
+  border-top: 2px solid #07312c;
+  background: linear-gradient(rgb(250, 248, 242, 0), rgb(250, 248, 242, 0.9));
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+
+  > div {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed #07312c;
+    box-sizing: border-box;
+  }
 }

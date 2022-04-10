@@ -1,7 +1,12 @@
 import getLocation from "./getLocation";
-import { getWeather, getFirstWeather, toggleDegrees } from "./callWeatherAPI";
-import { fillDOM } from "./DOM";
-import { buildMap, updateMap } from "./map";
+import {
+  getWeather,
+  getFirstWeather,
+  toggleDegrees,
+  getForecast,
+} from "./callWeatherAPI";
+import { fillForecast, fillWeather, updateForecast } from "./DOM";
+import { updateMap } from "./map";
 
 const getCoords = (weatherObject) => weatherObject.coord;
 
@@ -29,27 +34,39 @@ const reportWeather = () => {
     newWeather
       .then((data) => filterWeather(data))
       .then((result) => {
-        fillDOM(result);
+        fillWeather(result);
         updateMap(getCoords(result));
+        getForecast(getCoords(result)).then((forecast) => {
+          for (let i = 1; i < 8; ++i) {
+            fillForecast(forecast.daily[i]);
+          }
+        });
         search.value = "";
+        search.placeholder = "Enter City";
       });
   });
 };
 
 async function reportFirstWeather() {
   const coords = await getLocation();
+  const search = document.querySelector("form > input");
   const firstWeather = getFirstWeather(coords);
   firstWeather
     .then((data) => filterWeather(data))
     .then((result) => {
-      fillDOM(result);
+      fillWeather(result);
       updateMap(getCoords(result));
+      getForecast(getCoords(result)).then((forecast) => {
+        for (let i = 1; i < 8; ++i) {
+          fillForecast(forecast.daily[i]);
+        }
+      });
+      search.placeholder = "Enter City";
     });
 }
 
 const addToggleListener = () => {
   const toggle = document.getElementById("toggle");
-  console.log(toggle);
   toggle.addEventListener("change", () => {
     toggleDegrees();
     const city = document.querySelector(".city");
@@ -57,7 +74,12 @@ const addToggleListener = () => {
     newWeather
       .then((data) => filterWeather(data))
       .then((result) => {
-        fillDOM(result);
+        fillWeather(result);
+        getForecast(getCoords(result)).then((forecast) => {
+          for (let i = 1; i < 8; ++i) {
+            updateForecast(forecast.daily[i], i);
+          }
+        });
       });
   });
 };
