@@ -195,7 +195,7 @@ input:checked + label:after {
   font-weight: bold;
   font-family: "Roboto", sans-serif;
 
-  > div {
+  > div, a {
     display: grid;
     justify-items: center;
     align-items: center;
