@@ -184,11 +184,10 @@ const makeDOM = () => {
   makeClouds();
   makeToggle();
   makeMap();
-  makeGithubLogo();
   makeForecast();
 };
 
-const fillDOM = (weatherData) => {
+const fillWeather = (weatherData) => {
   city.textContent = weatherData.name;
   if (celsius) {
     temp.textContent = `${weatherData.main.temp}°C`;
@@ -203,4 +202,29 @@ const fillDOM = (weatherData) => {
   clouds.textContent = `${weatherData.clouds.all}%`;
 };
 
-export { makeDOM, fillDOM, makeMap };
+const fillForecast = (daily) => {
+  const container = document.createElement("div");
+  const forecastTemp = document.createElement("div");
+  const date = document.createElement("div");
+  forecastTemp.textContent = daily.temp.day;
+  date.textContent = daily.dt;
+  container.appendChild(forecastTemp);
+  container.appendChild(date);
+  forecast.appendChild(container);
+};
+
+const updateForecast = (daily, i) => {
+  const forecastList = Array.from(document.querySelectorAll(".forecast > div"));
+  console.log(forecastList);
+  forecastList[i - 1].firstChild.textContent = daily.temp.day;
+  forecastList[i - 1].lastChild.textContent = daily.dt;
+};
+
+export {
+  makeDOM,
+  fillWeather,
+  makeMap,
+  makeGithubLogo,
+  fillForecast,
+  updateForecast,
+};

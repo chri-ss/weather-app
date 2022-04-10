@@ -5,7 +5,12 @@ import {
   toggleDegrees,
   getForecast,
 } from "./callWeatherAPI";
-import { fillDOM } from "./DOM";
+import {
+  fillForecast,
+  fillWeather,
+  makeGithubLogo,
+  updateForecast,
+} from "./DOM";
 import { updateMap } from "./map";
 
 const getCoords = (weatherObject) => weatherObject.coord;
@@ -34,11 +39,14 @@ const reportWeather = () => {
     newWeather
       .then((data) => filterWeather(data))
       .then((result) => {
-        fillDOM(result);
+        fillWeather(result);
         updateMap(getCoords(result));
-        getForecast(getCoords(result)).then((forecast) =>
-          console.log(forecast)
-        );
+        getForecast(getCoords(result)).then((forecast) => {
+          for (let i = 1; i < 8; ++i) {
+            fillForecast(forecast.daily[i]);
+          }
+          makeGithubLogo();
+        });
         search.value = "";
         search.placeholder = "Enter City";
       });
@@ -52,9 +60,14 @@ async function reportFirstWeather() {
   firstWeather
     .then((data) => filterWeather(data))
     .then((result) => {
-      fillDOM(result);
+      fillWeather(result);
       updateMap(getCoords(result));
-      getForecast(getCoords(result)).then((forecast) => console.log(forecast));
+      getForecast(getCoords(result)).then((forecast) => {
+        for (let i = 1; i < 8; ++i) {
+          fillForecast(forecast.daily[i]);
+        }
+        makeGithubLogo();
+      });
       search.placeholder = "Enter City";
     });
 }
@@ -68,7 +81,12 @@ const addToggleListener = () => {
     newWeather
       .then((data) => filterWeather(data))
       .then((result) => {
-        fillDOM(result);
+        fillWeather(result);
+        getForecast(getCoords(result)).then((forecast) => {
+          for (let i = 1; i < 8; ++i) {
+            updateForecast(forecast.daily[i], i);
+          }
+        });
       });
   });
 };

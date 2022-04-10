@@ -180,16 +180,24 @@ input:checked + label:after {
 
 .github {
   display: grid;
-  // grid-column: 7/8;
-  grid-row: 1/3;
   justify-items: center;
   align-items: center;
 }
 
 .forecast {
   display: grid;
-  // grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+  justify-items: center;
+  align-items: center;
   grid-row: 3/4;
   border-top: 2px solid #07312c;
   background-color: rgb(250, 248, 242, 0.1);
+  font-size: 18px;
+
+  > div {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    gap: 1rem;
+  }
 }
