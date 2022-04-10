@@ -1,3 +1,5 @@
+import { format, fromUnixTime } from "date-fns";
+
 import tempIcon from "./images/snowflake-thermometer.svg";
 import highLowIcon from "./images/swap-vertical-bold.svg";
 import weatherIcon from "./images/white-balance-sunny.svg";
@@ -213,7 +215,7 @@ const fillForecast = (daily) => {
   const forecastTemp = document.createElement("div");
   const date = document.createElement("div");
   forecastTemp.textContent = daily.temp.day;
-  date.textContent = convertDate(daily.dt);
+  date.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
   container.appendChild(forecastTemp);
   container.appendChild(date);
   forecast.appendChild(container);
@@ -223,7 +225,7 @@ const updateForecast = (daily, i) => {
   const forecastList = Array.from(document.querySelectorAll(".forecast > div"));
   console.log(forecastList);
   forecastList[i - 1].firstChild.textContent = daily.temp.day;
-  forecastList[i - 1].lastChild.textContent = convertDate(daily.dt);
+  forecastList[i - 1].lastChild.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
 };
 
 export {
