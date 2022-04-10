@@ -21,7 +21,7 @@ body {
 
 #map {
   height: 512px;
-  width: 512px;
+  width: 60%;
   border: 2px solid #07312c;
   border-radius: 10px;
 }
@@ -40,7 +40,7 @@ body {
 
 .main {
   height: 100%;
-  // grid-template-rows: 8fr 1fr;
+  row-gap: 2rem;
   align-items: center;
   justify-items: center;
   font-family: "Roboto-italic", sans-serif;
@@ -125,7 +125,6 @@ h1 {
       grid-column: 1/3;
       white-space: nowrap;
       text-decoration: underline;
-      // justify-self: center;
     }
 
     :nth-child(2),
@@ -191,14 +190,19 @@ input:checked + label:after {
   align-items: center;
   grid-row: 3/4;
   border-top: 2px solid #07312c;
-  background-color: rgb(250, 248, 242, 0.1);
-  font-size: 18px;
-  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(rgb(250, 248, 242, 0), rgb(250, 248, 242, 0.9));
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
 
   > div {
     display: grid;
     justify-items: center;
     align-items: center;
     gap: 1rem;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed #07312c;
+    box-sizing: border-box;
   }
 }

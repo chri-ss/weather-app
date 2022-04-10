@@ -214,7 +214,11 @@ const fillForecast = (daily) => {
   const container = document.createElement("div");
   const forecastTemp = document.createElement("div");
   const date = document.createElement("div");
-  forecastTemp.textContent = daily.temp.day;
+  if(celsius) {
+    forecastTemp.textContent = `${daily.temp.day}°C`;  
+  } else {
+    forecastTemp.textContent = `${daily.temp.day}°F`;
+  }
   date.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
   container.appendChild(forecastTemp);
   container.appendChild(date);
@@ -224,7 +228,10 @@ const fillForecast = (daily) => {
 const updateForecast = (daily, i) => {
   const forecastList = Array.from(document.querySelectorAll(".forecast > div"));
   console.log(forecastList);
-  forecastList[i - 1].firstChild.textContent = daily.temp.day;
+  if(celsius) {
+    forecastList[i - 1].firstChild.textContent = `${daily.temp.day}°C`;
+  }
+  forecastList[i - 1].firstChild.textContent = `${daily.temp.day}°F`;
   forecastList[i - 1].lastChild.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
 };
 
