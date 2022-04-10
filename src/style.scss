@@ -22,14 +22,14 @@ body {
 #map {
   height: 512px;
   width: 512px;
-  border: 2px solid #17a292;
+  border: 2px solid #07312c;
   border-radius: 10px;
 }
 
 #content {
   display: grid;
   height: 100%;
-  grid-template-rows: 1fr 8fr;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .main,
@@ -40,6 +40,7 @@ body {
 
 .main {
   height: 100%;
+  // grid-template-rows: 8fr 1fr;
   align-items: center;
   justify-items: center;
   font-family: "Roboto-italic", sans-serif;
@@ -48,7 +49,7 @@ body {
 .header {
   background-color: #f6879f;
   font-family: "Roboto-bold", sans-serif;
-  border-bottom: 2px solid #17a292;
+  border-bottom: 2px solid #07312c;
 }
 
 form {
@@ -102,10 +103,10 @@ h1 {
   justify-items: start;
   gap: 1rem;
   background-color: rgb(250, 248, 242, 0.1);
-  height: auto;
+  // height: auto;
   width: 60%;
   padding: 2rem;
-  border: 2px solid #17a292;
+  border: 2px solid #07312c;
   border-radius: 10px;
 
   > div {
@@ -153,6 +154,7 @@ label {
   position: relative;
   cursor: pointer;
   transition: 0.5s;
+  justify-self: center;
 }
 label:after {
   content: "C";
@@ -174,4 +176,20 @@ input:checked + label:after {
   left: calc(100% - 0.2rem);
   transform: translateX(-100%);
   content: "F";
+}
+
+.github {
+  display: grid;
+  // grid-column: 7/8;
+  grid-row: 1/3;
+  justify-items: center;
+  align-items: center;
+}
+
+.forecast {
+  display: grid;
+  // grid-template-columns: repeat(7, 1fr);
+  grid-row: 3/4;
+  border-top: 2px solid #07312c;
+  background-color: rgb(250, 248, 242, 0.1);
 }

@@ -1,7 +1,12 @@
 import getLocation from "./getLocation";
-import { getWeather, getFirstWeather, toggleDegrees } from "./callWeatherAPI";
+import {
+  getWeather,
+  getFirstWeather,
+  toggleDegrees,
+  getForecast,
+} from "./callWeatherAPI";
 import { fillDOM } from "./DOM";
-import { buildMap, updateMap } from "./map";
+import { updateMap } from "./map";
 
 const getCoords = (weatherObject) => weatherObject.coord;
 
@@ -31,25 +36,31 @@ const reportWeather = () => {
       .then((result) => {
         fillDOM(result);
         updateMap(getCoords(result));
+        getForecast(getCoords(result)).then((forecast) =>
+          console.log(forecast)
+        );
         search.value = "";
+        search.placeholder = "Enter City";
       });
   });
 };
 
 async function reportFirstWeather() {
   const coords = await getLocation();
+  const search = document.querySelector("form > input");
   const firstWeather = getFirstWeather(coords);
   firstWeather
     .then((data) => filterWeather(data))
     .then((result) => {
       fillDOM(result);
       updateMap(getCoords(result));
+      getForecast(getCoords(result)).then((forecast) => console.log(forecast));
+      search.placeholder = "Enter City";
     });
 }
 
 const addToggleListener = () => {
   const toggle = document.getElementById("toggle");
-  console.log(toggle);
   toggle.addEventListener("change", () => {
     toggleDegrees();
     const city = document.querySelector(".city");
