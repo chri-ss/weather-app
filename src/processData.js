@@ -5,12 +5,7 @@ import {
   toggleDegrees,
   getForecast,
 } from "./callWeatherAPI";
-import {
-  fillForecast,
-  fillWeather,
-  makeGithubLogo,
-  updateForecast,
-} from "./DOM";
+import { fillForecast, fillWeather, updateForecast } from "./DOM";
 import { updateMap } from "./map";
 
 const getCoords = (weatherObject) => weatherObject.coord;
@@ -45,7 +40,6 @@ const reportWeather = () => {
           for (let i = 1; i < 8; ++i) {
             fillForecast(forecast.daily[i]);
           }
-          makeGithubLogo();
         });
         search.value = "";
         search.placeholder = "Enter City";
@@ -66,7 +60,6 @@ async function reportFirstWeather() {
         for (let i = 1; i < 8; ++i) {
           fillForecast(forecast.daily[i]);
         }
-        makeGithubLogo();
       });
       search.placeholder = "Enter City";
     });

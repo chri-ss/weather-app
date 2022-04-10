@@ -20,6 +20,12 @@ const humidity = document.createElement("div");
 const visibility = document.createElement("div");
 const clouds = document.createElement("div");
 
+const convertDate = (date) => {
+  const milliseconds = date * 1000;
+  const dateObject = new Date(milliseconds);
+  return dateObject;
+};
+
 const makeHeader = () => {
   header.classList.add("header");
   content.appendChild(header);
@@ -207,7 +213,7 @@ const fillForecast = (daily) => {
   const forecastTemp = document.createElement("div");
   const date = document.createElement("div");
   forecastTemp.textContent = daily.temp.day;
-  date.textContent = daily.dt;
+  date.textContent = convertDate(daily.dt);
   container.appendChild(forecastTemp);
   container.appendChild(date);
   forecast.appendChild(container);
@@ -217,7 +223,7 @@ const updateForecast = (daily, i) => {
   const forecastList = Array.from(document.querySelectorAll(".forecast > div"));
   console.log(forecastList);
   forecastList[i - 1].firstChild.textContent = daily.temp.day;
-  forecastList[i - 1].lastChild.textContent = daily.dt;
+  forecastList[i - 1].lastChild.textContent = convertDate(daily.dt);
 };
 
 export {
