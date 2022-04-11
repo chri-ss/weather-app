@@ -9,4 +9,4 @@ reportWeather();
 reportFirstWeather();
 addToggleListener();
 getLocation().then((data) => console.log(data.coords.longitude));
-makeGithubLogo();
+// makeGithubLogo();

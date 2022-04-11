@@ -40,7 +40,7 @@ const makeSearch = () => {
   search.type = "search";
   searchButton.type = "submit";
   searchButton.textContent = "search";
-  searchButton.placeholder = "Enter city";
+  search.placeholder = "Enter city";
   searchForm.appendChild(search);
   searchForm.appendChild(searchButton);
   header.appendChild(searchForm);
@@ -176,6 +176,20 @@ const makeForecast = () => {
   content.appendChild(forecast);
 };
 
+const fillForecast = () => {
+  makeGithubLogo();
+  for (let i = 0; i < 7; ++i) {
+    const container = document.createElement("div");
+    const forecastTemp = document.createElement("div");
+    const date = document.createElement("div");
+    forecastTemp.textContent = "-";
+    date.textContent = "-";
+    container.appendChild(forecastTemp);
+    container.appendChild(date);
+    forecast.appendChild(container);
+  }
+};
+
 const makeDOM = () => {
   makeHeader();
   makeMain();
@@ -191,6 +205,7 @@ const makeDOM = () => {
   makeToggle();
   makeMap();
   makeForecast();
+  fillForecast();
 };
 
 const fillWeather = (weatherData) => {
@@ -206,21 +221,6 @@ const fillWeather = (weatherData) => {
   humidity.textContent = `${weatherData.main.humidity}%`;
   visibility.textContent = weatherData.visibility;
   clouds.textContent = `${weatherData.clouds.all}%`;
-};
-
-const fillForecast = (daily) => {
-  const container = document.createElement("div");
-  const forecastTemp = document.createElement("div");
-  const date = document.createElement("div");
-  if (celsius) {
-    forecastTemp.textContent = `${daily.temp.day}°C`;
-  } else {
-    forecastTemp.textContent = `${daily.temp.day}°F`;
-  }
-  date.textContent = format(fromUnixTime(daily.dt), "MMMM dd yyyy");
-  container.appendChild(forecastTemp);
-  container.appendChild(date);
-  forecast.appendChild(container);
 };
 
 const updateForecast = (daily, i) => {
@@ -241,7 +241,5 @@ export {
   makeDOM,
   fillWeather,
   makeMap,
-  makeGithubLogo,
-  fillForecast,
   updateForecast,
 };

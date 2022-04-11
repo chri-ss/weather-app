@@ -48,7 +48,7 @@ const reportWeather = () => {
 };
 
 async function reportFirstWeather() {
-  const coords = await getLocation();
+  const coords = await getLocation().catch((err) => alert(err));
   const search = document.querySelector("form > input");
   const firstWeather = getFirstWeather(coords);
   firstWeather
@@ -58,7 +58,7 @@ async function reportFirstWeather() {
       updateMap(getCoords(result));
       getForecast(getCoords(result)).then((forecast) => {
         for (let i = 1; i < 8; ++i) {
-          fillForecast(forecast.daily[i]);
+          updateForecast(forecast.daily[i], i);
         }
       });
       search.placeholder = "Enter City";
