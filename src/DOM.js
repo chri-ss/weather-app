@@ -22,12 +22,6 @@ const humidity = document.createElement("div");
 const visibility = document.createElement("div");
 const clouds = document.createElement("div");
 
-const convertDate = (date) => {
-  const milliseconds = date * 1000;
-  const dateObject = new Date(milliseconds);
-  return dateObject;
-};
-
 const makeHeader = () => {
   header.classList.add("header");
   content.appendChild(header);
@@ -70,6 +64,10 @@ const makeToggle = () => {
 
 const makeWeatherContainer = () => {
   weatherContainer.classList.add("weather-container");
+  const current = document.createElement("p");
+  current.textContent = "Current Weather";
+  current.classList.add("current");
+  weatherContainer.appendChild(current);
   main.appendChild(weatherContainer);
 };
 
@@ -214,12 +212,12 @@ const fillForecast = (daily) => {
   const container = document.createElement("div");
   const forecastTemp = document.createElement("div");
   const date = document.createElement("div");
-  if(celsius) {
-    forecastTemp.textContent = `${daily.temp.day}°C`;  
+  if (celsius) {
+    forecastTemp.textContent = `${daily.temp.day}°C`;
   } else {
     forecastTemp.textContent = `${daily.temp.day}°F`;
   }
-  date.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
+  date.textContent = format(fromUnixTime(daily.dt), "MMMM dd yyyy");
   container.appendChild(forecastTemp);
   container.appendChild(date);
   forecast.appendChild(container);
@@ -228,11 +226,15 @@ const fillForecast = (daily) => {
 const updateForecast = (daily, i) => {
   const forecastList = Array.from(document.querySelectorAll(".forecast > div"));
   console.log(forecastList);
-  if(celsius) {
+  if (celsius) {
     forecastList[i - 1].firstChild.textContent = `${daily.temp.day}°C`;
+  } else {
+    forecastList[i - 1].firstChild.textContent = `${daily.temp.day}°F`;
   }
-  forecastList[i - 1].firstChild.textContent = `${daily.temp.day}°F`;
-  forecastList[i - 1].lastChild.textContent = format(fromUnixTime(daily.dt), "MMMM eo yyyy");
+  forecastList[i - 1].lastChild.textContent = format(
+    fromUnixTime(daily.dt),
+    "MMMM dd yyyy"
+  );
 };
 
 export {

@@ -38,7 +38,7 @@ const reportWeather = () => {
         updateMap(getCoords(result));
         getForecast(getCoords(result)).then((forecast) => {
           for (let i = 1; i < 8; ++i) {
-            fillForecast(forecast.daily[i]);
+            updateForecast(forecast.daily[i], i);
           }
         });
         search.value = "";

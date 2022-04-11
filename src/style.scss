@@ -98,7 +98,7 @@ h1 {
 
 .weather-container {
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: 0.5fr repeat(6, 1fr) 0.5fr;
   align-items: center;
   justify-items: start;
   gap: 1rem;
@@ -115,9 +115,9 @@ h1 {
     grid-template-rows: 1fr 2fr;
     align-items: center;
     justify-items: start;
-    font-size: 24px;
+    font-size: 20px;
     column-gap: 2rem;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
     height: auto;
 
     :first-child {
@@ -133,6 +133,15 @@ h1 {
     }
   }
 
+  .current {
+    font-size: 24px;
+    background: linear-gradient(to right, rgba(7, 49, 44, 0), rgba(7, 49, 44, 1) );
+    color: #fff;
+    justify-self: end;
+    padding: 0.5rem 4rem 0.5rem 4rem;
+    border-radius: 5px;
+  }
+
   img {
     height: 100%;
   }
@@ -141,7 +150,7 @@ h1 {
 input[type="checkbox"] {
   width: 0;
   height: 0;
-  visibility: hidden;
+  display: none;
 }
 
 label {
@@ -195,7 +204,7 @@ input:checked + label:after {
   font-weight: bold;
   font-family: "Roboto", sans-serif;
 
-  > div, a {
+  > div {
     display: grid;
     justify-items: center;
     align-items: center;
