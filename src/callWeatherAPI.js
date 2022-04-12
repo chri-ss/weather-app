@@ -40,13 +40,13 @@ async function getForecast(coordObject) {
       { mode: "cors" }
     );
     return response.json();
-  } else {
+  } 
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${coordObject.lat}&lon=${coordObject.lon}&exclude=current,alerts,hourly,minutely,alerts&appid=6148db30e4f604e4a99b33552cb35346&units=imperial`,
       { mode: "cors" }
     );
     return response.json();
-  }
+  
 }
 
 export { getWeather, getFirstWeather, toggleDegrees, getForecast, celsius };

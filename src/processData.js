@@ -26,38 +26,8 @@ const filterWeather = (weatherData) => {
   return newWeather;
 };
 
-const reportWeather = () => {
-  const form = document.querySelector("form");
-  const search = form.querySelector("input");
-  const errSpan = document.querySelector(".error");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    errSpan.style.display = "none";
-    const newWeather = getWeather(search.value);
-    newWeather
-      .then((data) => filterWeather(data))
-      .then((result) => {
-        fillWeather(result);
-        updateMap(getCoords(result));
-        getForecast(getCoords(result)).then((forecast) => {
-          for (let i = 1; i < 8; ++i) {
-            updateForecast(forecast.daily[i], i);
-          }
-        });
-        search.value = "";
-        search.placeholder = "Enter City";
-      })
-      .catch((err) => {
-        validateInput(err);
-      });
-  });
-};
-
-async function reportFirstWeather() {
-  const coords = await getLocation().catch((err) => validateInput(err));
-  const search = document.querySelector("form > input");
-  const firstWeather = getFirstWeather(coords);
-  firstWeather
+const updateWeather = (weatherInfo, search) => {
+  weatherInfo
     .then((data) => filterWeather(data))
     .then((result) => {
       fillWeather(result);
@@ -69,7 +39,29 @@ async function reportFirstWeather() {
       });
       search.value = "";
       search.placeholder = "Enter City";
+    })
+    .catch((err) => {
+      validateInput(err);
     });
+};
+
+const reportWeather = () => {
+  const form = document.querySelector("form");
+  const search = form.querySelector("input");
+  const errSpan = document.querySelector(".error");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    errSpan.style.display = "none";
+    const weather = getWeather(search.value);
+    updateWeather(weather, search);
+  });
+};
+
+async function reportFirstWeather() {
+  const coords = await getLocation().catch((err) => validateInput(err));
+  const search = document.querySelector("form > input");
+  const weather = getFirstWeather(coords);
+  updateWeather(weather, search);
 }
 
 const addToggleListener = () => {
@@ -77,8 +69,8 @@ const addToggleListener = () => {
   toggle.addEventListener("change", () => {
     toggleDegrees();
     const city = document.querySelector(".city");
-    const newWeather = getWeather(city.textContent);
-    newWeather
+    const weather = getWeather(city.textContent);
+    weather
       .then((data) => filterWeather(data))
       .then((result) => {
         fillWeather(result);
