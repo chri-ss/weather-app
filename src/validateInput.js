@@ -1,8 +1,14 @@
 const validateInput = (err) => {
   if (err) {
+    console.log(err.code);
     const errSpan = document.querySelector(".error");
-    errSpan.textContent = "Bad";
-    errSpan.style.display = "block";
+    if (err.code === 1) {
+      errSpan.textContent = "Please enter a city or enable geolocation and try again";
+    } else {
+        errSpan.textContent = "Please enter a city name"
+    }
+
+    errSpan.style.display = "grid";
   }
 };
 

@@ -42,7 +42,7 @@ const makeSearch = () => {
   search.type = "search";
   searchButton.type = "submit";
   searchButton.textContent = "search";
-  search.placeholder = "Enter city";
+  search.placeholder = "Enter City";
   search.setAttribute("novalidate", true);
   searchForm.appendChild(search);
   searchForm.appendChild(searchButton);

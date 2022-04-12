@@ -73,7 +73,14 @@ form {
   }
 
   span {
+    justify-items: center;
+    align-items: start;
+    text-align: center;
     display: none;
+    width: 80%;
+    height: 100%;
+    color: red;
+    justify-self: end;
   }
 
   button {
