@@ -5,8 +5,9 @@ import {
   toggleDegrees,
   getForecast,
 } from "./callWeatherAPI";
-import { fillForecast, fillWeather, updateForecast } from "./DOM";
+import { fillWeather, updateForecast } from "./DOM";
 import { updateMap } from "./map";
+import validateInput from "./validateInput";
 
 const getCoords = (weatherObject) => weatherObject.coord;
 
@@ -28,8 +29,10 @@ const filterWeather = (weatherData) => {
 const reportWeather = () => {
   const form = document.querySelector("form");
   const search = form.querySelector("input");
+  const errSpan = document.querySelector(".error");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    errSpan.style.display = "none";
     const newWeather = getWeather(search.value);
     newWeather
       .then((data) => filterWeather(data))
@@ -43,12 +46,15 @@ const reportWeather = () => {
         });
         search.value = "";
         search.placeholder = "Enter City";
+      })
+      .catch((err) => {
+        validateInput(err);
       });
   });
 };
 
 async function reportFirstWeather() {
-  const coords = await getLocation().catch((err) => alert(err));
+  const coords = await getLocation().catch((err) => validateInput(err));
   const search = document.querySelector("form > input");
   const firstWeather = getFirstWeather(coords);
   firstWeather
@@ -61,6 +67,7 @@ async function reportFirstWeather() {
           updateForecast(forecast.daily[i], i);
         }
       });
+      search.value = "";
       search.placeholder = "Enter City";
     });
 }

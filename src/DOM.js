@@ -37,12 +37,16 @@ const makeSearch = () => {
   const searchForm = document.createElement("form");
   const search = document.createElement("input");
   const searchButton = document.createElement("button");
+  const errSpan = document.createElement("span");
+  errSpan.classList.add("error");
   search.type = "search";
   searchButton.type = "submit";
   searchButton.textContent = "search";
   search.placeholder = "Enter city";
+  search.setAttribute("novalidate", true);
   searchForm.appendChild(search);
   searchForm.appendChild(searchButton);
+  searchForm.appendChild(errSpan);
   header.appendChild(searchForm);
 };
 
@@ -237,9 +241,4 @@ const updateForecast = (daily, i) => {
   );
 };
 
-export {
-  makeDOM,
-  fillWeather,
-  makeMap,
-  updateForecast,
-};
+export { makeDOM, fillWeather, makeMap, updateForecast };
