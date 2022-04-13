@@ -26,7 +26,7 @@ const filterWeather = (weatherData) => {
   return newWeather;
 };
 
-const updateWeather = (weatherInfo, search) => {
+const updateWeather = (weatherInfo, search, geo) => {
   weatherInfo
     .then((data) => filterWeather(data))
     .then((result) => {
@@ -41,7 +41,9 @@ const updateWeather = (weatherInfo, search) => {
       search.placeholder = "Enter City";
     })
     .catch((err) => {
-      validateInput(err);
+      if (geo === false) {
+        validateInput(err);
+      }
     });
 };
 
@@ -49,19 +51,24 @@ const reportWeather = () => {
   const form = document.querySelector("form");
   const search = form.querySelector("input");
   const errSpan = document.querySelector(".error");
+  const geo = false;
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     errSpan.style.display = "none";
     const weather = getWeather(search.value);
-    updateWeather(weather, search);
+    updateWeather(weather, search, geo);
   });
 };
 
 async function reportFirstWeather() {
-  const coords = await getLocation().catch((err) => validateInput(err));
+  let geo;
+  const coords = await getLocation().catch((err) => {
+    validateInput(err);
+    geo = true;
+  });
   const search = document.querySelector("form > input");
   const weather = getFirstWeather(coords);
-  updateWeather(weather, search);
+  updateWeather(weather, search, geo);
 }
 
 const addToggleListener = () => {

@@ -3,10 +3,8 @@ let celsius = true;
 const toggleDegrees = () => {
   if (celsius) {
     celsius = false;
-    console.log(celsius);
   } else {
     celsius = true;
-    console.log(celsius);
   }
 };
 
